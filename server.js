@@ -22,8 +22,9 @@ app.get('/', (req, res) => {
 // 1. Crear una ruta POST /cancion que reciba los datos correspondientes a una canción y realice a través de una función asíncrona la inserción en la tabla repertorio.
 app.post('/cancion', async (req, res) => {
     try {
-        const respuesta = await db.agregarCancion(req.body)
+        const respuesta = await db.insertarCancion(req.body)
         res.send(respuesta).status(201)
+        console.log(chalk.green.bold('Canción Agregada correctamente'))
     } catch (error) {
         res.send(error).status(500)
         console.log(chalk.red.bold('Error al agregar cancion'))
@@ -46,6 +47,7 @@ app.put('/cancion/:id', async (req, res) => {
         const {id} = req.params
         const respuesta = await db.editarCancion(req.body, id)
         res.send(respuesta).status(201)
+        console.log(chalk.red.yellow('Canción editada correctamente'))
     } catch (error) {
         res.send(error).status(500)
     }
@@ -57,6 +59,7 @@ app.delete('/cancion', async (req, res) => {
         const {id} = req.query
         const respuesta = await db.eliminarCancion(id);
         res.send(respuesta)
+        console.log(chalk.bold('Canción eliminada correctamente'))
     } catch (error) {
         res.send(error).status(500)
     }
