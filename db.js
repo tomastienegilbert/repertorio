@@ -61,7 +61,7 @@ const eliminarCancion = async (id) => {
 
 //exportar módulos
 module.exports = {
-  insertarCancion,
+  agregarCancion,
   obtenerCanciones,
   editarCancion,
   eliminarCancion,
