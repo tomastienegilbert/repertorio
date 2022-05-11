@@ -32,11 +32,11 @@ const obtenerCanciones = async () => {
 };
 
 //funcion editar cancion
-const editarCancion = async (i, { titulo, artista, tono }) => {
+const editarCancion = async ({ titulo, artista, tono }, id) => {
   try {
     const SQLQuery = {
-      text: "UPDATE canciones SET titulo = $1, artista = $2, tono = $3 WHERE id = $4",
-      values: [titulo, artista, tono, i],
+      text: `UPDATE canciones SET titulo = $1, artista = $2, tono = $3 WHERE id = $4`,
+      values: [titulo, artista, tono, id],
     };
     const result = await pool.query(SQLQuery);
     return result.rows[0];
